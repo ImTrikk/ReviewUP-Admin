@@ -6,6 +6,7 @@ import { useRef } from "react";
 
 import { Toaster, toast } from "sonner";
 import LoadingBar from "react-top-loading-bar";
+import { Reports } from "../components/Reports";
 
 export const Dashboard = () => {
 	const firstname = localStorage.getItem("firstname");
@@ -53,7 +54,7 @@ export const Dashboard = () => {
 				<LoadingBar height={7} color="#E44F48" ref={loadingBar} />
 				<Toaster />
 				<img src="/static/images/header.png" alt="" className="w-full h-[120px]" />
-				<div className="max-w-7xl mx-48 2xlmx-auto pt-5">
+				<div className="max-w-7xl mx-48 2xl:mx-auto pt-5">
 					<div className="flex justify-between items-center">
 						<div className="flex items-center gap-3">
 							<img
@@ -74,12 +75,23 @@ export const Dashboard = () => {
 							Logout
 						</button>
 					</div>
-					<div className="pt-5">
+					<div className="pt-10">
 						<h1 className="">Admin Dashboard</h1>
-						<hr />
+						<div className="pt-2">
+							<hr />
+						</div>
 						<div className="flex items-center gap-5 pt-5">
 							<TotalReviewerCard />
 							<ReportCard />
+						</div>
+						<div className="pt-10">
+							<h1>Reported reviewers</h1>
+							<div className="pt-2">
+								<hr />
+							</div>
+							<div className="pt-5">
+								<Reports />
+							</div>
 						</div>
 					</div>
 				</div>
