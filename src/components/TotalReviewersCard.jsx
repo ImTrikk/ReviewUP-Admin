@@ -15,7 +15,6 @@ export const TotalReviewerCard = () => {
 			});
 
 			const data = await res.json();
-			console.log(data);
 			setCount(data.count);
 		} catch (err) {
 			console.log(err);

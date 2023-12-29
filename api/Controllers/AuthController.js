@@ -51,3 +51,17 @@ export const Login = async (req, res) => {
 		return res.status(500).json({ message: "Internal server error" });
 	}
 };
+
+export const Logout = async (req, res) => {
+	const admin_id = req.params;
+	console.log(admin_id);
+	try {
+		res.cookie("token", { expires: new Date(0), httpOnly: true });
+		res.clearCookie();
+
+		return res.status(200).json({ message: "Logout successful" });
+	} catch (err) {
+		console.log(err);
+		res.status(500).json({ message: "Internal Server Error" });
+	}
+};

@@ -21,9 +21,6 @@ export const CourseCounter = async (req, res) => {
 // counts all the reported course modules
 export const CountReport = async (req, res) => {
 	try {
-
-		
-
 	} catch (err) {
 		console.log(err);
 		return res.status(500).json({ message: "Internal server error" });
