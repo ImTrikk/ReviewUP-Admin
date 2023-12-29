@@ -1,16 +1,23 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { buildUrl } from "../utils/buildUrl";
 import { Toaster, toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+
+import LoadingBar from "react-top-loading-bar";
 
 export const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+	const navigator = useNavigate();
+	const loadingBar = useRef(null);
+
 	// login functionality
 	const handleLogin = async (e) => {
+		loadingBar.current.continuousStart(60);
+		e.preventDefault();
 		try {
-			e.preventDefault();
-			const res = await fetch(buildUrl("/api/login"), {
+			const res = await fetch(buildUrl("/login"), {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -20,20 +27,32 @@ export const Login = () => {
 					password,
 				}),
 			});
+
 			const data = await res.json();
+
 			if (res.ok) {
 				toast.success(data.message);
+				localStorage.setItem("firstname", data.user.firstname);
+				localStorage.setItem("lastname", data.user.lastname);
+				localStorage.setItem("email", data.user.email);
+				sessionStorage.setItem("token", data.token);
+				setTimeout(() => {
+					loadingBar.current.complete();
+					navigator("/dashboard");
+				}, 3000);
+				loadingBar.current.complete();
 			} else {
 				toast.error(data.message);
 			}
+			loadingBar.current.complete();
 		} catch (err) {
 			toast.error("Cannot handle request as of the moment, try again later");
-			console.log(err);
 		}
 	};
 
 	return (
 		<>
+			<LoadingBar height={7} color="#E44F48" ref={loadingBar} />
 			<Toaster />
 			<div className="p-10 w-[500px] bg-white border border-gray-100 shadow-md rounded-md h-auto">
 				<div className="flex items-center gap-2">
@@ -48,7 +67,7 @@ export const Login = () => {
 				<form>
 					<div className="space-y-4 pt-5">
 						<div className="flex flex-col gap-2">
-							<label htmlFor="">Email</label>
+							<label htmlFor="email">Email</label>
 							<input
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
@@ -58,7 +77,7 @@ export const Login = () => {
 							/>
 						</div>
 						<div className="flex flex-col gap-2">
-							<label htmlFor="">Password</label>
+							<label htmlFor="password">Password</label>
 							<input
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}
