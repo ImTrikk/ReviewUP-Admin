@@ -10,7 +10,9 @@ export const Login = async (req, res) => {
 			[email],
 		);
 
-		if (!emailExist) {
+		const emailFound = emailExist.rows[0];
+
+		if (!emailFound) {
 			return res.status(404).json({ message: "Admin email not found" });
 		}
 
