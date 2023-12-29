@@ -32,6 +32,7 @@ export const Login = () => {
 
 			if (res.ok) {
 				toast.success(data.message);
+				localStorage.setItem("admin_id", data.user.admin_id);
 				localStorage.setItem("firstname", data.user.firstname);
 				localStorage.setItem("lastname", data.user.lastname);
 				localStorage.setItem("email", data.user.email);
