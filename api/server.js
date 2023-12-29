@@ -7,7 +7,7 @@ import { AdminRouter } from "./Router/Router.js";
 const app = express();
 
 app.use(express.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
 	cors({
 		origin: "*",
@@ -25,8 +25,8 @@ dbConnection
 		app.use("/api", AdminRouter);
 
 		// Start the server
-		app.listen(3000, () => {
-			console.log("Server running on localhost 3000");
+		app.listen(4242, () => {
+			console.log("Server running on localhost 4242");
 		});
 		console.log("Connected to postgre");
 	})
