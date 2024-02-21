@@ -8,6 +8,9 @@ const router = express();
 router.post("/login", Login);
 router.delete("/logout/:id", Logout);
 
+//router for admin forgot password
+router.get('/forgot-password')
+
 // route for admin controllers and api's
 router.get("/count-reviewers", CourseCounter);
 

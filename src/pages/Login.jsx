@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { buildUrl } from "../utils/buildUrl";
 import { Toaster, toast } from "sonner";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import LoadingBar from "react-top-loading-bar";
 
@@ -29,6 +29,8 @@ export const Login = () => {
 			});
 
 			const data = await res.json();
+
+			console.log(data);
 
 			if (res.ok) {
 				toast.success(data.message);
@@ -89,11 +91,11 @@ export const Login = () => {
 					</div>
 					<div className="pt-5 flex justify-end">
 						<div className="flex items-center gap-2">
-							<a
-								href="https://review-up.vercel.app"
-								className="text-primaryColor border border-primaryColor h-10 flex items-center justify-center px-4 rounded">
-								review-up
-							</a>
+							<Link to="/forgot-password">
+								<h1 className="text-primaryColor border border-primaryColor h-10 flex items-center justify-center px-4 rounded text-xs">
+									forgot password
+								</h1>
+							</Link>
 							<button
 								onClick={handleLogin}
 								className="bg-violet-500 hover:bg-white hover:border hover:border-primaryColor hover:text-primaryColor h-10  rounded px-4 text-xs text-white font-medium">
