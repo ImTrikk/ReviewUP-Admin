@@ -26,3 +26,12 @@ export const CountReport = async (req, res) => {
 		return res.status(500).json({ message: "Internal server error" });
 	}
 };
+
+// get reported courses
+export const GetReportedCourse = async (req, res) => {
+	try {
+	} catch (err) {
+		console.log(err);
+		return res.status(500).json({ message: "Internal Server Error" });
+	}
+};

@@ -53,14 +53,24 @@ export const Dashboard = () => {
 			<div>
 				<LoadingBar height={7} color="#E44F48" ref={loadingBar} />
 				<Toaster />
-				<img src="/static/images/header.png" alt="" className="w-full h-[120px]" />
+				<div className="relative">
+					<img src="/static/images/header.png" alt="" className="w-full h-[120px]" />
+					<div className="absolute top-0 mx-48 mt-10 ">
+						<h1 className="text-3xl font-bold text-white">
+							ReviewUP Admin
+						</h1>
+						<p className="text-white font-light">
+							Manage student's reviewers and courses
+						</p>
+					</div>
+				</div>
 				<div className="max-w-7xl mx-48 2xl:mx-auto pt-5">
 					<div className="flex justify-between items-center">
 						<div className="flex items-center gap-3">
 							<img
 								src="/static/images/admin.png"
 								alt=""
-								className="rounded-full w-[120px] border border-primaryColor"
+								className="rounded-full w-[100px] border border-primaryColor"
 							/>
 							<div>
 								<h1 className="text-2xl font-bold">
@@ -76,7 +86,7 @@ export const Dashboard = () => {
 						</button>
 					</div>
 					<div className="pt-10">
-						<h1 className="">Admin Dashboard</h1>
+						<h1 className="">Dashboard</h1>
 						<div className="pt-2">
 							<hr />
 						</div>

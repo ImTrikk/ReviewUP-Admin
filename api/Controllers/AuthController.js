@@ -10,7 +10,9 @@ export const Login = async (req, res) => {
 			[email],
 		);
 
-		if (!emailExist) {
+		const emailFound = emailExist.rows[0];
+
+		if (!emailFound) {
 			return res.status(404).json({ message: "Admin email not found" });
 		}
 
@@ -63,5 +65,15 @@ export const Logout = async (req, res) => {
 	} catch (err) {
 		console.log(err);
 		res.status(500).json({ message: "Internal Server Error" });
+	}
+};
+
+//validate email first with otp
+export const ForgotPassword = () => {
+	// endpoint will accept {email and as well as new password}
+	try {
+		return res.status(200).json({ message: "Success change password" });
+	} catch (err) {
+		return res.status(500).json({message: "Internal Server Error"})
 	}
 };
